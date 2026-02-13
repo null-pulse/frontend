@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Student Portal</title>
+
+<style>
+    body {
+        font-family: Arial;
+        background: #eef2f3;
+        text-align: center;
+    }
+    .box {
+        background: white;
+        width: 380px;
+        margin: 70px auto;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    }
+    input, button {
+        width: 90%;
+        padding: 8px;
+        margin: 6px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="box" id="loginBox">
+    <h3>Student Login</h3>
+    <input id="name" placeholder="Username">
+    <input id="pin" type="password" placeholder="PIN">
+    <button onclick="login()">Login</button>
+    <p id="msg"></p>
+</div>
+
+<div class="box" id="dashboard" style="display:none;">
+    <h3>Your Marks</h3>
+    <p id="marks"></p>
+    <button onclick="location.href='index.html'">Logout</button>
+</div>
+
+<script>
+const students = {
+    pradipta:{pin:"1234",bengali:0,english:0,math:0},
+    arnab:{pin:"3456",bengali:0,english:0,math:0},
+    pritam:{pin:"5678",bengali:0,english:0,math:0},
+    rudra:{pin:"1233",bengali:0,english:0,math:0},
+    riya:{pin:"2233",bengali:0,english:0,math:0}
+};
+
+function login() {
+    const n = name.value.toLowerCase();
+    const p = pin.value;
+
+    if (students[n] && students[n].pin === p) {
+        loginBox.style.display = "none";
+        dashboard.style.display = "block";
+
+        marks.innerText =
+            `Bengali : ${students[n].bengali}\n` +
+            `English : ${students[n].english}\n` +
+            `Math    : ${students[n].math}`;
+    } else {
+        msg.innerText = "Invalid username or PIN";
+        msg.style.color = "red";
+    }
+}
+</script>
+
+</body>
+</html>
